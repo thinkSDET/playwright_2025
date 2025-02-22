@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import LoginPage from "./LoginPage";
 
 export default class LandingPage{
@@ -8,8 +8,7 @@ export default class LandingPage{
 
     async NavigateToLoginPage(){
         await this.page.goto('/');
-        this.page.locator(this.loginBtnLink).click();
-        const loginPage = new LoginPage(this.page);
-        return loginPage;
+        await this.page.locator(this.loginBtnLink).click();
+        await expect(this.page).toHaveTitle("Loginss");
     }
 }

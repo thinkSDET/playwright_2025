@@ -1,5 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import DeskPage from "../pages/DeskPage";
+import LandingPage from "../pages/LandingPage";
 
 export default class LoginPage{
 
@@ -16,6 +17,8 @@ export default class LoginPage{
      * @param userPassword 
      */
     async loginApplication(userEmail:string, userPassword:string){
+        const landingPage =  new LandingPage(this.page);
+        await landingPage.NavigateToLoginPage();
         await this.page.locator(this.enterEmailInputBox).fill(userEmail);
         await this.page.locator(this.enterPwdInputBox).fill(userPassword);
         await this.page.locator(this.submitBtn).click()
