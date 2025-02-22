@@ -1,4 +1,5 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
+import DeskPage from "../pages/DeskPage";
 
 export default class LoginPage{
 
@@ -18,6 +19,12 @@ export default class LoginPage{
         await this.page.locator(this.enterEmailInputBox).fill(userEmail);
         await this.page.locator(this.enterPwdInputBox).fill(userPassword);
         await this.page.locator(this.submitBtn).click()
+        .catch((error)=>{
+            console.log(`error on the login button, please check the error:${error}`);
+            throw error;
+        });
+        const deskPage  = new DeskPage(this.page);
+        return deskPage;
     }
 
 }

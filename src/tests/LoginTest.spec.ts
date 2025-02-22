@@ -1,10 +1,12 @@
 import { test } from "@playwright/test";
 import LoginPage from "../pages/LoginPage";
 import LandingPage from "../pages/LandingPage";
+import DeskPage from "../pages/DeskPage";
 
-test("Login Test Verification", async({page})=>{
+test("Login_With_Valid_Credentials", async({page})=>{
    const landingPage =  new LandingPage(page);
    const loginPage =  new LoginPage(page);
    await landingPage.NavigateToLoginPage();
-   await loginPage.loginApplication("testology.qa.learning@gmail.com","Testology@123");
+   const deskPage = await loginPage.loginApplication("testology.qa.learning@gmail.com","Testology@123");
+   deskPage.verifyUserLandOnDeskPage();
 });
