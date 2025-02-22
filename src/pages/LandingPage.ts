@@ -9,6 +9,7 @@ export default class LandingPage{
     async NavigateToLoginPage(){
         await this.page.goto('/');
         this.page.locator(this.loginBtnLink).click();
-        return new LoginPage(this.page);
+        const loginPage = new LoginPage(this.page);
+        return loginPage;
     }
 }

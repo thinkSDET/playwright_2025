@@ -5,8 +5,7 @@ import DeskPage from "../pages/DeskPage";
 
 test("Login_With_Valid_Credentials", async({page})=>{
    const landingPage =  new LandingPage(page);
-   const loginPage =  new LoginPage(page);
-   await landingPage.NavigateToLoginPage();
+   const loginPage = await landingPage.NavigateToLoginPage();
    const deskPage = await loginPage.loginApplication("testology.qa.learning@gmail.com","Testology@123");
-   deskPage.verifyUserLandOnDeskPage();
+   await deskPage.verifyUserLandOnDeskPage();
 });
