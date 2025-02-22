@@ -9,6 +9,6 @@ export default class LandingPage{
     async NavigateToLoginPage(){
         await this.page.goto('/');
         await this.page.locator(this.loginBtnLink).click();
-        await expect(this.page).toHaveTitle("Loginss");
+        await expect(this.page).toHaveTitle("Login");
     }
 }
