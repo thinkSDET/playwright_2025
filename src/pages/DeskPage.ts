@@ -1,4 +1,5 @@
 import { Page,expect } from "@playwright/test";
+import SellingPage from "./SellingPage";
 export default class DeskPage{
 
     private readonly deshPageTitle = "Home";
@@ -17,6 +18,8 @@ export default class DeskPage{
 
     async navigateToSellingModuleLink(){
         await this.page.locator(this.sellingModuleLink).click();
+        const sellingPage = new SellingPage(this.page);
+        return sellingPage;
     }
 
 }
