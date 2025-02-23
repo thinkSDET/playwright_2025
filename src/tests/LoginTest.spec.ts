@@ -1,6 +1,5 @@
 import { test } from "@playwright/test";
 import LoginPage from "../pages/LoginPage";
-import DeskPage from "../pages/DeskPage";
 
 test("Login_with_valid_credentials", async({page})=>{
    const loginPage =  new LoginPage(page);
