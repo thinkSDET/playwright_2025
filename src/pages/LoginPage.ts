@@ -7,6 +7,7 @@ export default class LoginPage{
     private readonly enterEmailInputBox ="#login_email";
     private readonly enterPwdInputBox= "#login_password";
     private readonly submitBtn ="//button[@type='submit' and normalize-space(text())='Login']";
+    private readonly invalidLoginTxt = "[data-text='Login']";
     constructor(private page: Page){
            
     }
@@ -29,5 +30,19 @@ export default class LoginPage{
         });
         const deskPage  = new DeskPage(this.page);
         return deskPage;
+    }
+
+    async validateLoginWithInvalidCred(userEmail:string, userPassword:string){
+        const landingPage =  new LandingPage(this.page);
+        await landingPage.NavigateToLoginPage();
+        // Fill in login form and submit
+        await this.page.locator(this.enterEmailInputBox).fill(userEmail);
+        await this.page.locator(this.enterPwdInputBox).fill(userPassword);
+        await this.page.locator(this.submitBtn).click()
+        .catch((error)=>{
+            console.log(`error on the login button, please check the error:${error}`);
+            throw error;
+        });
+        await expect(this.page.locator(this.invalidLoginTxt)).toHaveText("Invalid Login. Try again.");
     }
 }
